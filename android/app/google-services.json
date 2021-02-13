@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "740949647959",
+    "project_id": "western-recipes",
+    "storage_bucket": "western-recipes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740949647959:android:c9ab8221215401ea267912",
+        "android_client_info": {
+          "package_name": "com.example.western_recipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740949647959-gi50spepb7bqnfd35amqr625vinl8fce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTrfhHc1vGtLZSYg-IVFeZwQhdKzbwIw8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740949647959-gi50spepb7bqnfd35amqr625vinl8fce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
