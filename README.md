@@ -1,4 +1,4 @@
-# western_recipes
+# western_recipes_app
 
 A new Flutter application.
 
