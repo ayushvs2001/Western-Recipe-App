@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:western_recipes/screen/drawer/favorite_list.dart';
 import 'package:western_recipes/services/auth.dart';
-import 'package:western_recipes/shared/constants.dart';
 
 const sign1 = Icon(Icons.add,color:Colors.black,);
 const sign2 = Icon(Icons.remove,color:Colors.black,);
@@ -15,14 +14,7 @@ class _MainDrawerState extends State<MainDrawer> {
 
   final AuthServices _auth = AuthServices();  // this _auth variable use for logout
 
-
   bool history_sign = true;
-
-  Widget _showSettingsPanel(){
-   print("Button click");
-   history_sign = !history_sign;
-   print(history_sign);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +23,6 @@ class _MainDrawerState extends State<MainDrawer> {
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
         physics: ClampingScrollPhysics(),
-        padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
               child: Text("Settings", style: TextStyle(
@@ -66,7 +57,7 @@ class _MainDrawerState extends State<MainDrawer> {
                   ),
                   trailing: history_sign ? sign1 : sign2,
                 ),
-                FavoriteList(),
+                history_sign ? SizedBox():FavoriteList(),
                 ListTile(
                   leading: FlatButton.icon(
                     minWidth: 250,
@@ -80,6 +71,21 @@ class _MainDrawerState extends State<MainDrawer> {
                       color: Colors.black,
                     ),),
                     color: Colors.pinkAccent,
+                  ),
+                ),
+                ListTile(
+                  leading: FlatButton.icon(
+                    minWidth: 250,
+                    height: 40,
+                    onPressed: () async {
+                      Navigator.of(context).pop(true);  // back button
+                    },
+                    icon: Icon(Icons.home),
+                    label: Text("Home", style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                    ),),
+                    color: Colors.cyanAccent,
                   ),
                 ),
               ],

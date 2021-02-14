@@ -7,6 +7,7 @@ import 'package:western_recipes/models/user.dart';
 import 'package:western_recipes/shared/loading.dart';
 import 'package:provider/provider.dart';
 
+
 const favorite_icon_pink = Colors.pink;
 const favorite_icon_black = Colors.black;
 
@@ -30,18 +31,6 @@ class _RecipieTileState extends State<RecipieTile> {
   }
   bool color_favorite = false;
 
-
-  bool check(final labels, String label){
-    labels.forEach((labels_label) {
-      if(labels_label == label) {
-          color_favorite = true;
-        return true;
-      }
-    });
-    color_favorite = false;
-    return false;
-  }
-
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User_1>(context);
@@ -52,6 +41,9 @@ class _RecipieTileState extends State<RecipieTile> {
     builder: (context, snapshot) {
     if(snapshot.hasData) {
     UserData userData = snapshot.data;
+
+    // this update the current widget if the item delete from the favorite list
+    color_favorite = userData.recipes.keys.contains(widget.title);
 
     return Wrap(
         children: <Widget>[
@@ -77,16 +69,16 @@ class _RecipieTileState extends State<RecipieTile> {
                   borderRadius: BorderRadius.circular(25),
                   color: Colors.blueAccent,
                   boxShadow: [
-                    BoxShadow(color: Colors.red, spreadRadius: 3),
+                    BoxShadow(color: Colors.black, spreadRadius: 3),
                   ]
               ),
               child: Stack(
                 children: <Widget>[
                   ClipRRect(
                     borderRadius: BorderRadius.circular(25.0),
-                    child: Image.network(
+                    child: widget.imgUrl !=null ? Image.network(
                       widget.imgUrl,
-                    ),
+                    ) : SizedBox(),
                   ),
                   Container(
                     width: 240,
@@ -127,7 +119,7 @@ class _RecipieTileState extends State<RecipieTile> {
                     alignment: Alignment.bottomRight,
                     child: IconButton(
                         icon: Icon(Icons.favorite),
-                        color: (check(userData.recipes.keys, widget.title) || color_favorite) ? favorite_icon_pink : favorite_icon_black,
+                        color: (color_favorite = userData.recipes.keys.contains(widget.title) || color_favorite) ? favorite_icon_pink : favorite_icon_black,
                         onPressed: () async {
                           setState(() {
                             color_favorite = !color_favorite;
@@ -135,7 +127,7 @@ class _RecipieTileState extends State<RecipieTile> {
                           );
                             var favorite = new Map();
                             favorite = userData.recipes;
-                            if (color_favorite) {
+                            if (color_favorite) { // if colour_favorite is true, then item is added
                               print("element added");
                               favorite[widget.title] =  {"source":widget.desc, 'url':widget.url};
                               await DatabaseService(uid: user.uid).updateUserData(favorite);

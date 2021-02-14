@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:western_recipes/services/auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'recipe.dart';
@@ -12,21 +11,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final AuthServices _auth = AuthServices();  // this _auth variable use for logout
-
   List<RecipeModel> recipies = new List();
   String ingridients;
-  bool _loading = false;
   String query = "";
   TextEditingController textEditingController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.brown[50],
       appBar: AppBar(
-        title: Text("Western Recipes App"),
+        title: Text("WESTERN RECIPE APP"),
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
       ),
@@ -38,7 +33,7 @@ class _HomeState extends State<Home> {
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/coffee_bg.png"),
+                  image: AssetImage("assets/recipe.png"),
                   fit: BoxFit.cover,
                 ),
             ),
@@ -88,15 +83,10 @@ class _HomeState extends State<Home> {
                         SizedBox(
                           width: 16,
                         ),
-                        InkWell(
+                        InkWell(  // it is rectangular area that respond to touch.
                             onTap: () async {
                               if (textEditingController.text.isNotEmpty) {
-                                setState(() {
-                                  _loading = true;
-                                });
-                                print(textEditingController.text.toString());
                                 recipies = new List();
-
                                 String url =
                                     "https://api.edamam.com/search?q=${textEditingController.text.toString()}&app_id=142449c4&app_key=db574863b772744c78208a7c36ad8307";
 
@@ -110,9 +100,6 @@ class _HomeState extends State<Home> {
                                   recipeModel = RecipeModel.fromMap(element['recipe']);
                                   recipies.add(recipeModel);
                                   print(recipeModel.url);
-                                });
-                                setState(() {
-                                  _loading = false;
                                 });
                                 print("doing it");
                               } else {
@@ -168,7 +155,7 @@ class _HomeState extends State<Home> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
       );

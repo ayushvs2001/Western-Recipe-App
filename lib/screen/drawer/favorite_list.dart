@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:western_recipes/screen/home/recipe_view.dart';
 import 'package:western_recipes/services/database.dart';
 import 'package:western_recipes/models/user.dart';
 import 'package:provider/provider.dart';
 import 'package:western_recipes/shared/loading.dart';
-import 'package:western_recipes/screen/home/recipe_tile.dart';
-
-
+import 'package:flutter/foundation.dart';
 
 class FavoriteList extends StatefulWidget {
   @override
@@ -14,6 +14,16 @@ class FavoriteList extends StatefulWidget {
 }
 
 class _FavoriteListState extends State<FavoriteList> {
+
+  _launchURL(String url) async {
+    print(url);
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -34,43 +44,46 @@ class _FavoriteListState extends State<FavoriteList> {
 //       print(userData.recipes[label]["url"]);
 //    });
 
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        children: <Widget>[
-          ListView.builder(
+    return ListView.builder(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: favorite_list.length,
           itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.only(top: 8.0),
+            return GestureDetector(
+                onTap: () {
+                  if (kIsWeb) {  //kIsWeb constant return true if the application was compiled to run on web.
+                    _launchURL(userData.recipes[favorite_list[index]]["url"]);
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RecipeView(
+                              postUrl: userData.recipes[favorite_list[index]]["url"],  // here we call recipeView which is used to open web page
+                            )
+                        )
+                    );
+                  }
+                },
               child: Card(
                 margin: EdgeInsets.fromLTRB(30.0, 0.0, 20.0, 0.0),
                 child: ListTile(
-                  leading: Text(favorite_list[index]),
+                  title: Text(favorite_list[index]),
                   trailing: IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: Icon(Icons.delete, color: Colors.black,),
                       onPressed: () async {
                         var current_favorite_map = userData.recipes;
                         current_favorite_map.remove(favorite_list[index]);
-                        setState(() {
-
-                        });
                         await DatabaseService(uid: user.uid).updateUserData(current_favorite_map);
-                        print("element remove");
                       }
                    ),
+                  subtitle: Text(userData.recipes[favorite_list[index]]["source"]),
                 ),
-                color: Colors.blueAccent,
+                color: Colors.grey[300],
+
               )
             );
           }
-      ),
-        ],
-      ),
-    );
-
+          );
     }
     else
     {
