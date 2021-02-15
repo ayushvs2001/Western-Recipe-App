@@ -22,7 +22,6 @@ class RecipieTile extends StatefulWidget {
 
 class _RecipieTileState extends State<RecipieTile> {
   _launchURL(String url) async {
-    print(url);
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -52,7 +51,6 @@ class _RecipieTileState extends State<RecipieTile> {
               if (kIsWeb) {
                 _launchURL(widget.url);
               } else {
-                print(widget.url + " this is what we are going to see");
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -128,14 +126,12 @@ class _RecipieTileState extends State<RecipieTile> {
                             var favorite = new Map();
                             favorite = userData.recipes;
                             if (color_favorite) { // if colour_favorite is true, then item is added
-                              print("element added");
                               favorite[widget.title] =  {"source":widget.desc, 'url':widget.url};
                               await DatabaseService(uid: user.uid).updateUserData(favorite);
                             }
                             else{
                               favorite.remove(widget.title);
                               await DatabaseService(uid: user.uid).updateUserData(favorite);
-                              print("element remove");
                           }
                         }
                     ),

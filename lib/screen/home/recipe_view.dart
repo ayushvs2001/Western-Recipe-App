@@ -26,7 +26,6 @@ class _RecipeViewState extends State<RecipeView> {
     finalUrl = widget.postUrl;
     if(widget.postUrl.contains('http://')){
       finalUrl = widget.postUrl.replaceAll("http://","https://");
-      print(finalUrl + "this is final url");
     }
 // https is more secure than http.https made information encrypted while http do nothing.
   // https work on transport layer, while http work on the application layer
@@ -60,7 +59,6 @@ class _RecipeViewState extends State<RecipeView> {
                 width: MediaQuery.of(context).size.width,
                 child: WebView(
                   onPageFinished: (val) {
-                    print("$val page finished");
                   },
                   javascriptMode: JavascriptMode.unrestricted,
                   initialUrl: finalUrl,

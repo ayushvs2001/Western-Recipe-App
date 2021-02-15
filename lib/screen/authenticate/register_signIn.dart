@@ -103,7 +103,6 @@ class _Register_SignInState extends State<Register_SignIn> {
                         if (_formKey.currentState.validate()) // return true or false depending upon the form is correct or not
                             {
                           setState(() => loading = true);
-                          print("valid");
                           dynamic result = await _auth.signInWithEmailAndPassword(email, password);
                           if (result == null){
                             setState(()

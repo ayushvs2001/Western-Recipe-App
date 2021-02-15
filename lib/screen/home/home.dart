@@ -96,19 +96,13 @@ class _HomeState extends State<Home> {
                                     "https://api.edamam.com/search?q=${textEditingController.text.toString()}&app_id=142449c4&app_key=db574863b772744c78208a7c36ad8307";
 
                                 var response = await http.get(url);
-                                print(" $response this is response");
                                 Map<String, dynamic> jsonData = jsonDecode(response.body);
-                                print("this is json Data $jsonData");
                                 jsonData["hits"].forEach((element) {
-                                  print(element.toString());
                                   RecipeModel recipeModel = new RecipeModel();
                                   recipeModel = RecipeModel.fromMap(element['recipe']);
                                   recipies.add(recipeModel);
-                                  print(recipeModel.url);
                                 });
-                                print("doing it");
                               } else {
-                                print("not doing it");
                               }
                             },
                             child: Container(

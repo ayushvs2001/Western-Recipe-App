@@ -1,8 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:western_recipes/models/user.dart';
-import 'database.dart';
-
 
 class AuthServices{
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -28,8 +25,6 @@ class AuthServices{
       return _userFromFirebaseUser(user); // if this is success, return uid
     }
     catch (e) {
-      print("error during the sign in");
-      print(e.toString());
       return null;
     }
   }
@@ -48,8 +43,6 @@ class AuthServices{
       return _userFromFirebaseUser(user); // if this is success, return uid
     }
     catch (e) {
-      print("error during the registering the email and password");
-      print(e.toString());
       return null;
     }
   }
@@ -60,8 +53,6 @@ class AuthServices{
       return await _auth.signOut();
     }
     catch(e) {
-      print("error in signout");
-      print(e.toString());
       return null;
 
     }

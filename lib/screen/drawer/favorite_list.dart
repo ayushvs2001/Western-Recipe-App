@@ -16,7 +16,6 @@ class FavoriteList extends StatefulWidget {
 class _FavoriteListState extends State<FavoriteList> {
 
   _launchURL(String url) async {
-    print(url);
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -37,12 +36,6 @@ class _FavoriteListState extends State<FavoriteList> {
     UserData userData = snapshot.data;
 
     final favorite_list = (userData.recipes.keys).toList();
-
-//    favorite.forEach((label) {
-//       print(label);
-//       print(userData.recipes[label]["source"]);
-//       print(userData.recipes[label]["url"]);
-//    });
 
     return ListView.builder(
           scrollDirection: Axis.vertical,
