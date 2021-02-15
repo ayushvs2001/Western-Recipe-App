@@ -8,4 +8,4 @@ This project is a starting point for a Flutter application.
 
 The output images of mobile application are given as following:
 
-<img src="assets/auth.png" width="370" height="600">
+<img src="assets/auth.png" width="350" height="600">
