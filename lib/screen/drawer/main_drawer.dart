@@ -25,9 +25,12 @@ class _MainDrawerState extends State<MainDrawer> {
         physics: ClampingScrollPhysics(),
         children: <Widget>[
           DrawerHeader(
-              child: Text("Settings", style: TextStyle(
-                fontSize: 30
-              ),
+              child: Padding(
+                padding: const EdgeInsets.all(50.0),
+                child: Text("SETTINGS", style: TextStyle(
+                  fontSize: 30
+                ),
+                ),
               ),
             decoration: BoxDecoration(
               color: Colors.blue,
@@ -42,8 +45,23 @@ class _MainDrawerState extends State<MainDrawer> {
                   leading: FlatButton.icon(
                     minWidth: 250,
                     height: 40,
+                    onPressed: () async {
+                      Navigator.of(context).pop(true);  // back button
+                    },
+                    icon: Icon(Icons.home),
+                    label: Text("HOME", style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                    ),),
+                    color: Colors.cyanAccent,
+                  ),
+                ),
+                ListTile(
+                  leading: FlatButton.icon(
+                    minWidth: 250,
+                    height: 40,
                     icon: Icon(Icons.collections_bookmark),
-                    label: Text("Favourite", style: TextStyle(
+                    label: Text("FAVOURITE ITEMS", style: TextStyle(
                       fontSize: 20,
                       color: Colors.black,
                     ),
@@ -66,26 +84,11 @@ class _MainDrawerState extends State<MainDrawer> {
                       await _auth.signOut();
                     },
                     icon: Icon(Icons.person),
-                    label: Text("Log out", style: TextStyle(
+                    label: Text("LOG OUT", style: TextStyle(
                       fontSize: 20,
                       color: Colors.black,
                     ),),
                     color: Colors.pinkAccent,
-                  ),
-                ),
-                ListTile(
-                  leading: FlatButton.icon(
-                    minWidth: 250,
-                    height: 40,
-                    onPressed: () async {
-                      Navigator.of(context).pop(true);  // back button
-                    },
-                    icon: Icon(Icons.home),
-                    label: Text("Home", style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                    ),),
-                    color: Colors.cyanAccent,
                   ),
                 ),
               ],

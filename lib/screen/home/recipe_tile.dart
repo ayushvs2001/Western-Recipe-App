@@ -81,7 +81,7 @@ class _RecipieTileState extends State<RecipieTile> {
                     ) : SizedBox(),
                   ),
                   Container(
-                    width: 240,
+                    width: 260,
                     alignment: Alignment.bottomLeft,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25.0),

@@ -35,12 +35,13 @@ class _Register_SignInState extends State<Register_SignIn> {
             fit: BoxFit.cover,
           ),
         ),
-        padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 50.0),
+        padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/30,
+                               horizontal: MediaQuery.of(context).size.width/25),
         child: Form(
           key: _formKey,  // here we associated form with formkey
           child: Column(
             children: <Widget>[
-              SizedBox(height: 20.0),
+              SizedBox(height: MediaQuery.of(context).size.height/50),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: "Email"),
                 validator: (val) => val.isEmpty ? 'Enter an Email': null,
@@ -48,7 +49,7 @@ class _Register_SignInState extends State<Register_SignIn> {
                   setState(() => email = val);
                 },
               ),
-              SizedBox(height: 40.0),
+              SizedBox(height: MediaQuery.of(context).size.height/30),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: "Password"),
                 obscureText: true,  // this is password field and obscureText proper protect password from revealing
@@ -57,22 +58,22 @@ class _Register_SignInState extends State<Register_SignIn> {
                   setState(() => password = val);
                 },
               ),
-              SizedBox(height:30.0),
-              Row(
+              SizedBox(height:MediaQuery.of(context).size.height/50),
+              Column(
                 children: [
-                  SizedBox(width:20.0),
+                  SizedBox(height:20.0),
                   ButtonTheme(
-                    minWidth: 100.0,
-                    height: 50.0,
+                    minWidth: MediaQuery.of(context).size.width/2,
+                    height:MediaQuery.of(context).size.height/15,
                     shape:  RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                         side: BorderSide(color: Colors.red)
                     ),
                     child: RaisedButton(
-                      color: Colors.blueAccent,
+                      color: Colors.blueAccent[100],
                       child: Text(
                         "Register",
-                        style: TextStyle(color: Colors.black, fontSize: 15),
+                        style: TextStyle(color: Colors.black, fontSize: 17),
                       ),
                       onPressed: () async {
                         if (_formKey.currentState.validate()) // return true or false depending upon the form is correct or not
@@ -89,10 +90,10 @@ class _Register_SignInState extends State<Register_SignIn> {
                       },
                     ),
                   ),
-                  SizedBox(width:50.0),
+                  SizedBox(height:MediaQuery.of(context).size.height/35),
                   ButtonTheme(
-                    minWidth: 100.0,
-                    height: 50.0,
+                    minWidth: MediaQuery.of(context).size.width/2,
+                    height: MediaQuery.of(context).size.height/15,
                     shape:  RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                         side: BorderSide(color: Colors.red)
@@ -116,16 +117,15 @@ class _Register_SignInState extends State<Register_SignIn> {
                       color: Colors.pinkAccent[100],
                       child: Text(
                         "Sign in",
-                        style: TextStyle(color: Colors.indigo[900], fontSize: 15),
+                        style: TextStyle(color: Colors.indigo[900], fontSize: 17),
                       ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 12.0),
               Text(
                 error,
-                style: TextStyle(color: Colors.red, fontSize: 14.0),
+                style: TextStyle(color: Colors.cyan, fontSize: 15.0),
               ),
             ],
           ),

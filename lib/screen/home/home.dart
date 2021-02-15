@@ -19,10 +19,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.brown[50],
+      backgroundColor: Colors.red,
       appBar: AppBar(
         title: Text("WESTERN RECIPE APP"),
-        backgroundColor: Colors.brown[400],
+        backgroundColor: Colors.red,
         elevation: 0.0,
       ),
       drawer: MainDrawer(),
@@ -50,10 +50,11 @@ class _HomeState extends State<Home> {
                         fontSize: 20,
                         color: Colors.black,
                         fontWeight: FontWeight.w400,
-                        fontFamily: 'Overpass'),
+                        fontFamily: 'Overpass',
+                    ),
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 10,
                   ),
                   Container(
                     child: Row(
@@ -62,26 +63,30 @@ class _HomeState extends State<Home> {
                           child: TextField(
                             controller: textEditingController,
                             style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
+                                fontSize: 18,
+                                color: Colors.white,
                                 fontFamily: 'Overpass'),
                             decoration: InputDecoration(
                               hintText: "Enter Food Name/Ingridients",
+                              fillColor: Colors.blueGrey[700],
+                              filled: true,
                               hintStyle: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black.withOpacity(0.5),
+                                  fontSize: 18,
+                                  color: Colors.white,
                                   fontFamily: 'Overpass'),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black, width: 2.0),
+                                borderRadius: BorderRadius.circular(20.0)
                               ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white, width: 2.0),
+                                  borderRadius: BorderRadius.circular(20.0),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          width: 16,
+                          width: 5,
                         ),
                         InkWell(  // it is rectangular area that respond to touch.
                             onTap: () async {
@@ -109,6 +114,7 @@ class _HomeState extends State<Home> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Colors.black),
                                   gradient: LinearGradient(
                                       colors: [
                                         const Color(0xffA2834D),
@@ -122,8 +128,8 @@ class _HomeState extends State<Home> {
                                 children: <Widget>[
                                   Icon(
                                       Icons.search,
-                                      size: 18,
-                                      color: Colors.white
+                                      size: 28,
+                                      color: Colors.white,
                                   ),
                                 ],
                               ),
