@@ -4,7 +4,10 @@ A new Flutter application.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+## Technology Used
+- Flutter
+- Firebase
+
 
 ## Screenshots
 The output images of mobile application are given as following:
